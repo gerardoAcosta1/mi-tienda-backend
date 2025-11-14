@@ -9,9 +9,9 @@ require('dotenv').config();
 const PORT = 3001; // Usamos 3001 como puerto local por defecto
 
 // Rutas Importadas
-const productRoutes = require('./routes/product.routes');
-const authRoutes = require('./routes/auth.routes');
-const cartRoutes = require('./routes/cart.routes');
+const productRoutes = require('./src/routes/product.routes'); // <-- ¡Añade /src!
+const authRoutes = require('./src/routes/auth.routes');       // <-- ¡Añade /src!
+const cartRoutes = require('./src/routes/cart.routes');
 
 const server = http.createServer(app);
 
