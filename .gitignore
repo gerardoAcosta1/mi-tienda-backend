@@ -1,0 +1,38 @@
+# ------------------------------------
+# 1. DEPENDENCIAS Y COMPILACIÓN
+# ------------------------------------
+# Directorio de módulos de Node.js
+node_modules/
+
+# Directorios de compilación/caching
+.npm
+.yarn/
+/dist
+/build
+/tmp
+
+# ------------------------------------
+# 2. ARCHIVOS DE CONFIGURACIÓN Y SECRETOS
+# ------------------------------------
+# Archivo de variables de entorno (¡CRUCIAL!)
+# Este contiene las claves y contraseñas de tu base de datos (PostgreSQL, etc.)
+.env
+.env.local
+.env.*.local
+
+# Archivos de logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# ------------------------------------
+# 3. ARCHIVOS TEMPORALES Y DEL SISTEMA OPERATIVO
+# ------------------------------------
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# VS Code (opcional: ignora la configuración de tu editor)
+.vscode/
