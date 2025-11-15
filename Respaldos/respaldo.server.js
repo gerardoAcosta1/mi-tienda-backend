@@ -18,10 +18,7 @@ const io = new Server(server, {
 app.use(cors());
 app.use(express.json());
 
-// ... tu código de conexión a DB aquí (si aplica) ...
 
-// 🛑 ESTO HACE QUE LA CARPETA 'public' SEA ACCESIBLE POR URL
-// Los archivos en '/public' se servirán desde la raíz ('/')
 app.use(express.static(path.join(__dirname, '..', 'public')));
 /* usando poool */
 
@@ -173,7 +170,6 @@ io.on('connection', (socket) => {
   socket.on('mensaje', (data) => {
     console.log('Mensaje recibido:', data);
 
-    // Aquí se podría procesar o reenviar al celular
     socket.emit('respuesta', `Recibí: ${data.texto}`);
   });
     

@@ -2,12 +2,11 @@
 const jwt = require('jsonwebtoken');
 
 const verifyToken = (req, res, next) => {
-    // 1. Obtener el token del encabezado 'Authorization'
+    // Obtener el token del encabezado Authorization
     // El formato esperado es: Authorization: Bearer <token>
     const authHeader = req.headers.authorization;
     
     if (!authHeader) {
-        // 🛑 No autorizado: Token faltante
         return res.status(401).json({ message: 'Token no proporcionado' });
     }
 
@@ -19,17 +18,17 @@ const verifyToken = (req, res, next) => {
     }
 
     try {
-        // 2. Verificar el token usando la clave secreta
+        //  Verificar el token usando la clave secreta
         const decoded = jwt.verify(token, process.env.TOKEN_SECRET);
         
-        // 3. Adjuntar el payload decodificado (que contiene el user.id) a la petición
+        //  Adjuntar el payload decodificado (que contiene el user.id) a la petición
         req.user = decoded; 
         
-        // 4. Continuar a la ruta solicitada (ej. el GET /cart)
+        // Continuar a la ruta solicitada 
         next(); 
 
     } catch (error) {
-        // 🛑 No autorizado: Token expirado o inválido
+
         return res.status(401).json({ message: 'Token inválido o expirado' });
     }
 };

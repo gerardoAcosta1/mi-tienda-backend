@@ -14,17 +14,15 @@ router.post('/users', async (req, res) => {
     const { email, password, first_name, last_name, phone } = req.body;
     
     try {
-        // 1. Hashear la Contraseña antes de guardar
         const saltRounds = 10;
         const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-        // 2. Insertar el nuevo usuario en la tabla 'users'
+        //  Insertar el nuevo usuario en la tabla 'users'
         const sql = `INSERT INTO users (email, password, firstname, lastname, phone) 
                      VALUES ($1, $2, $3, $4, $5) RETURNING id, firstname, email`;
         
         const result = await pool.query(sql, [email, hashedPassword, first_name, last_name, phone]);
 
-        // 3. Devolver datos seguros
         return res.status(201).json(result.rows[0]); 
 
     } catch (error) {

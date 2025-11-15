@@ -6,10 +6,10 @@ const { Server } = require('socket.io');
 const path = require('path'); 
 const app = express();
 require('dotenv').config();
-const PORT = 3001; // Usamos 3001 como puerto local por defecto
+const PORT = 3001;
 
 // Rutas Importadas
-const productRoutes = require('./routes/product.routes'); // ⬅️ Quita el './src'
+const productRoutes = require('./routes/product.routes');
 const authRoutes = require('./routes/auth.routes'); 
 const cartRoutes = require('./routes/cart.routes');
 
@@ -22,7 +22,6 @@ const io = new Server(server, {
 app.use(cors());
 app.use(express.json());
 
-//  Montar Rutas del E-commerce
 // Todas estas rutas tendrán el prefijo /api/v1 
 app.use('/api/v1', productRoutes); 
 app.use('/api/v1', authRoutes); 
@@ -38,7 +37,7 @@ app.get('/', (req, res) => {
     res.send('Asistente backend activo');
 });
 
-// 🛑 Lógica de Socket.io (la dejamos aquí)
+// Lógica de Socket.io
 io.on('connection', (socket) => {
     console.log('Cliente conectado:', socket.id);
     socket.on('mensaje', (data) => {
